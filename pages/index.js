@@ -17,19 +17,13 @@ import {
   chakra,
   HTMLChakraProps,
   ThemingProps,
+  Switch,
+  Input,
 } from "@chakra-ui/react";
 
 export default function Home() {
-  const { toggleColorMode } = useColorMode();
-
   return (
     <>
-      <Flex direction="column" justifyContent="center" alignItems="center">
-        {/* Remove the variant to see the other custom styling */}
-        <Button onClick={toggleColorMode} mt={6}>
-          Toggle Color Mode
-        </Button>
-      </Flex>
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
@@ -100,6 +94,16 @@ export default function Home() {
                 Starting at $15/mo
               </Text>
             </Box>
+          </Stack>
+
+          <Stack>
+            <Switch id="email-alerts" size="lg" />
+          </Stack>
+          <Stack spacing={3}>
+            <Input placeholder="extra small size" size="xs" />
+            <Input placeholder="small size" size="sm" />
+            <Input placeholder="medium size" size="md" />
+            <Input placeholder="large size" size="lg" />
           </Stack>
         </Stack>
       </Container>

@@ -1,10 +1,18 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import * as React from "react";
+import { ChakraProvider, theme } from "@chakra-ui/react";
 import { purpleTheme, orangeTheme } from "../styles/theme";
-function MyApp({ Component, pageProps }) {
+import { ThemeColor } from "../components/themeColor";
+import react from "react";
+import { useThemeSelect } from "../components/themeColor";
+
+function MyApp({ Component, pageProps, colortheme }) {
   return (
-    <ChakraProvider theme={purpleTheme}>
-      <Component {...pageProps} />;
-    </ChakraProvider>
+    <>
+      <ThemeColor />
+      <ChakraProvider theme={orangeTheme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }
 
