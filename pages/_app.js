@@ -5,14 +5,25 @@ import { ThemeColor } from "../components/themeColor";
 import react from "react";
 import { useThemeSelect } from "../components/themeColor";
 import { useThemeBkm } from "../store";
-function MyApp({ Component, pageProps, colortheme }) {
-  const themeUser = useThemeBkm((state) => state.themebkmuser);
-  const [themedefault, setThemedefaul] = React.useState(null);
+function MyApp({ Component, pageProps }) {
+  const { themebkm } = useThemeBkm();
+  const [th, setth] = React.useState(themebkm);
+
+  console.log("app ==>", themebkm.theme);
+
+  React.useEffect(() => {
+    if (themebkm.theme === "orangeTheme") {
+      setth(orangeTheme);
+    }
+    if (themebkm.theme === "purpleTheme") {
+      setth(purpleTheme);
+    }
+  }, [themebkm]);
 
   return (
     <>
       <ThemeColor />
-      <ChakraProvider theme={themeUser}>
+      <ChakraProvider theme={th}>
         <Component {...pageProps} />
       </ChakraProvider>
     </>

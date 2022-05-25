@@ -26,9 +26,14 @@ import { useThemeBkm } from "../../store";
 
 export const ThemeColor = ({ colortheme }) => {
   const { toggleColorMode } = useColorMode();
-  const updatetheme = useThemeBkm((state) => state.updateThemeLocal);
-  const thb = useThemeBkm((state) => state.themebkmuser);
-  console.log("update theme name", thb);
+
+  const { themebkm, updatetheme } = useThemeBkm();
+  const upTheme = (e) => {
+    const theme = e.target.value;
+    console.log(theme);
+
+    updatetheme({ theme });
+  };
   return (
     <Flex direction="column" justifyContent="center" alignItems="center">
       {/* Remove the variant to see the other custom styling */}
@@ -43,8 +48,16 @@ export const ThemeColor = ({ colortheme }) => {
         </Stack>
       </RadioGroup> */}
 
-      <Button onClick={updatetheme} theme="purpleTheme" mt={6}>
+      <Button onClick={upTheme} value={"purpleTheme"} mt={6}>
         roxo
+      </Button>
+      <Button
+        onClick={upTheme}
+        colorScheme={"orange"}
+        value={"orangeTheme"}
+        mt={6}
+      >
+        Laranja
       </Button>
     </Flex>
   );

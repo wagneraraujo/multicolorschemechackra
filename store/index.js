@@ -1,7 +1,16 @@
 import create from "zustand";
 import { purpleTheme, orangeTheme } from "../styles/theme";
+import { persist } from "zustand/middleware";
 
-export const useThemeBkm = create((set) => ({
-  themebkmuser: orangeTheme,
-  updateThemeLocal: () => set((state) => ({ themebkmuser: state.state })),
-}));
+export const useThemeBkm = create(
+  persist(
+    (set, get) => ({
+      themebkm: "purpleTheme",
+
+      updatetheme: (themes) => set((state) => ({ themebkm: themes })),
+    }),
+    {
+      name: "themebkmlocal",
+    }
+  )
+);
