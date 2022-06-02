@@ -1,13 +1,12 @@
-import {
-  extendTheme,
-  withDefaultColorScheme,
-  theme as baseTheme,
-} from "@chakra-ui/react";
+import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react";
 // 2. Call `extendTheme` and pass your custom values
+
+const config = {
+  initialColorMode: "light",
+  useSystemColorMode: true,
+};
 const orangeTheme = extendTheme({
-  config: {
-    initialColorMode: "light",
-  },
+  config,
   colors: {
     primary: "#F55D24",
     secondary: "#F76E3C",
@@ -46,9 +45,6 @@ const orangeTheme = extendTheme({
 });
 
 const purpleTheme = extendTheme({
-  config: {
-    initialColorMode: "dark",
-  },
   colors: {
     primary: "#BE58EE",
     secondary: "rgba(190, 88, 238, 0.12)",

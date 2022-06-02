@@ -1,13 +1,19 @@
 import * as React from "react";
-import { ChakraProvider, theme } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  theme,
+  ColorModeProvider,
+  toggleColorMode,
+  useColorMode,
+} from "@chakra-ui/react";
 import { purpleTheme, orangeTheme } from "../styles/theme";
 import { ThemeColor } from "../components/themeColor";
-import react from "react";
-import { useThemeSelect } from "../components/themeColor";
 import { useThemeBkm } from "../store";
+
 function MyApp({ Component, pageProps }) {
   const { themebkm } = useThemeBkm();
   const [th, setth] = React.useState(themebkm);
+  const { toggleColorMode } = useColorMode();
 
   console.log("app ==>", themebkm.theme);
 
@@ -23,8 +29,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <ThemeColor />
+
       <ChakraProvider theme={th}>
-        <Component {...pageProps} />
+        <ColorModeProvider>
+          <Component {...pageProps} />
+        </ColorModeProvider>
       </ChakraProvider>
     </>
   );
